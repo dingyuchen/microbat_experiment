@@ -33,19 +33,9 @@ class Philosopher extends Thread {
 
 	public void eating() {
 		System.out.println("I am Eating:" + name);
-		try {
-			sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 	}
 
 	public void thinking() {
 		System.out.println("I am Thinking:" + name);
-		try {
-			sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 	}
 }

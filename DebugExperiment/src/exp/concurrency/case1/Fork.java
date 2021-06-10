@@ -9,14 +9,19 @@ package exp.concurrency.case1;
  */
 public class Fork {
 	
-	private boolean[] used = { false, false, false, false, false, false };
+	private boolean[] used;
+	private int size;
  
+	public Fork(int size) {
+		this.size = size;
+		this.used = new boolean[size];
+	}
 	
 	public synchronized void takeFork() {
 		String name = Thread.currentThread().getName();
 		System.out.println("try take : " + name);
 		int i = Integer.parseInt(name);
-		while (used[i] || used[(i + 1) % 5]) {
+		while (used[i] || used[(i + 1) % size]) {
 			try {
 				wait();
 			} catch (InterruptedException e) {
@@ -24,7 +29,7 @@ public class Fork {
 			}
 		}
 		used[i] = true;
-		used[(i + 1) % 5] = true;
+		used[(i + 1) % size] = true;
 	}
  
 	
@@ -33,7 +38,7 @@ public class Fork {
 		int i = Integer.parseInt(name);
  
 		used[i] = false;
-		used[(i + 1) % 5] = false;
+		used[(i + 1) % size] = false;
 		notifyAll();
 	}
 

@@ -9,11 +9,16 @@ package exp.concurrency.case1;
  */
 public class DiningPhilosophersDebug {
 	public static void main(String[] args) {
-		Fork fork = new Fork();
-		new Philosopher("0", fork,2).start();
-		new Philosopher("1", fork,2).start();
-		new Philosopher("2", fork,2).start();
-		new Philosopher("3", fork,2).start();
-		new Philosopher("4", fork,2).start();
+		int n = 5;
+		int m = 1000;
+		if (args.length > 0) {
+			n = Integer.parseInt(args[0]);
+			m = Integer.parseInt(args[1]);
+		}
+		
+		Fork fork = new Fork(n);
+		for (int i = 0; i < n; i++) {
+			new Philosopher(String.valueOf(i), fork, m).start();
+		}
     }
 }
