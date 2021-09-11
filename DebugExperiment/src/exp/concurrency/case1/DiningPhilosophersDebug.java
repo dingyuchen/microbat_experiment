@@ -10,7 +10,7 @@ package exp.concurrency.case1;
 public class DiningPhilosophersDebug {
 	public static void main(String[] args) {
 		int n = 5;
-		int m = 1000;
+		int m = 100;
 		if (args.length > 0) {
 			n = Integer.parseInt(args[0]);
 			m = Integer.parseInt(args[1]);
